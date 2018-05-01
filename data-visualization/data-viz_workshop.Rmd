@@ -309,6 +309,17 @@ df %>%
   scale_size_continuous(name = "GDP per capita")
 ```
 
+```
+# cheat sheet
+<data> %>% 
+  ggplot(mapping = aes(x = <variable>, y = <variable>, 
+                       color = <variable>, shape = <variable>, size = <variable>)) + 
+  geom_function(alpha = <level of transparency>) + 
+  labs(title = "<text>", subtitle = "<text>", caption = "<text>",
+       x = "<text>", y = "<text>") + 
+  scale_function(name = "<text>")
+```
+
 ### [Bonus] Facetting
 
 If the number of discrete groups are not a lot, you can consider spreading data into different windows using `facet_wrap`. Each window contains visualization for each group.
@@ -323,6 +334,18 @@ df %>%
   scale_color_discrete(name = "") +
   scale_size_continuous(name = "GDP per capita") +
   facet_wrap(~continent)
+```
+
+```
+# cheat sheet
+<data> %>% 
+  ggplot(mapping = aes(x = <variable>, y = <variable>, 
+                       color = <variable>, shape = <variable>, size = <variable>)) + 
+  geom_function(alpha = <level of transparency>) + 
+  labs(title = "<text>", subtitle = "<text>", caption = "<text>",
+       x = "<text>", y = "<text>") + 
+  scale_function(name = "<text>") + 
+  facet_wrap(~<variable to facet>)
 ```
 
 ## Your time to shine! 
