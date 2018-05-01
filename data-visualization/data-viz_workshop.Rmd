@@ -157,7 +157,8 @@ df %>%
 While using `ggplot2`, always remember to add each element of a graph using `+` instead of `%>%`.
 
 There are more plot options in `ggplot2` besides scatterplot. 
-- `geom_boxplot`: box plot
+
+* `geom_boxplot`: box plot
 
 ```{r}
 df %>% 
@@ -165,15 +166,7 @@ df %>%
   geom_boxplot()
 ```
 
-- `geom_col`: bar chart
-
-```{r}
-df %>% 
-  ggplot(mapping = aes(x = continent, y = lifeExp)) + 
-  geom_col()
-```
-
-- `geom_bar`: bar chart
+* `geom_bar`: bar chart -- this is quite different from our original thought of a bar chart. `geom_bar` uses number of count for each `x` as `y` values. In order to have bar chart with `y` as a continuous variable, we use `geom_col`.  
 
 ```{r}
 df %>% 
@@ -181,8 +174,8 @@ df %>%
   geom_bar()
 ```
 
-- `geom_hline`: horizontal reference line
-- `geom_vline`: vertical reference line
+* `geom_hline`: horizontal reference line
+* `geom_vline`: vertical reference line
 
 ```{r}
 df %>% 

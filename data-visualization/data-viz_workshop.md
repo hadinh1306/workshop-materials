@@ -216,7 +216,8 @@ df %>%
 While using `ggplot2`, always remember to add each element of a graph using `+` instead of `%>%`.
 
 There are more plot options in `ggplot2` besides scatterplot. 
-- `geom_boxplot`: box plot
+
+* `geom_boxplot`: box plot
 
 
 ```r
@@ -227,18 +228,7 @@ df %>%
 
 ![](data-viz_workshop_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
-- `geom_col`: bar chart
-
-
-```r
-df %>% 
-  ggplot(mapping = aes(x = continent, y = lifeExp)) + 
-  geom_col()
-```
-
-![](data-viz_workshop_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
-
-- `geom_bar`: bar chart
+* `geom_bar`: bar chart -- this is quite different from our original thought of a bar chart. `geom_bar` uses number of count for each `x` as `y` values. In order to have bar chart with `y` as a continuous variable, we use `geom_col`.  
 
 
 ```r
@@ -247,10 +237,10 @@ df %>%
   geom_bar()
 ```
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 
-- `geom_hline`: horizontal reference line
-- `geom_vline`: vertical reference line
+* `geom_hline`: horizontal reference line
+* `geom_vline`: vertical reference line
 
 
 ```r
@@ -260,7 +250,7 @@ df %>%
   geom_vline(xintercept = mean(df$gdpPercap))
 ```
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 ```
 # cheat sheet
@@ -289,7 +279,7 @@ df %>%
   geom_point()
 ```
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
 Instead, let's view visualization by continent.
 
@@ -300,7 +290,7 @@ df %>%
   geom_point()
 ```
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
 
 By shape: 
 
@@ -311,7 +301,7 @@ df %>%
   geom_point()
 ```
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
 
 By size:
 
@@ -328,7 +318,7 @@ df %>%
 ## Warning: Using size for a discrete variable is not advised.
 ```
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
 We can try grouping data using several methods at once! 
 
@@ -339,7 +329,7 @@ df %>%
   geom_point(alpha = 0.5)
 ```
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
 
 ```
 # cheat sheet
@@ -374,7 +364,7 @@ df %>%
        x = "GDP per capita ($)", y = "Life expectancy (years)")
 ```
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
 
 ```
 # cheat sheet
@@ -403,7 +393,7 @@ df %>%
   scale_size_continuous(name = "GDP per capita")
 ```
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-21-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
 
 ```
 # cheat sheet
@@ -433,7 +423,7 @@ df %>%
   facet_wrap(~continent)
 ```
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-22-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-21-1.png)<!-- -->
 
 ```
 # cheat sheet
