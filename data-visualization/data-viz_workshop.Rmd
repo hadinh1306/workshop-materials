@@ -6,7 +6,9 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(visdat)
+library(tidyverse)
+library(gapminder)
 ```
 
 This workshop acquires some materials from the [Data Wrangling workshop](https://github.com/davidklaing/data_science_workshops) led by David Laing. 
@@ -43,14 +45,59 @@ Option 1: Ask for help! We have volunteers who can help troubleshoot.
 
 Option 2a: Find a partner and follow along together — most of the exercises can be done collaboratively. Your installation problem is almost certainly solvable — we just might not have time today.
 
-Option 2b: Use [this datacamp light](https://cdn.datacamp.com/dcl/standalone-example.html) page to write and execute code in your browser. (A couple caveats: doesn't come with the titanic data, and might end up distracting you from the lesson. If this is your first time programming, I recommend option 2a.)
+Option 2b: Use [this datacamp light](https://cdn.datacamp.com/dcl/standalone-example.html) page to write and execute code in your browser. (A couple caveats: doesn't come with the gapminder data, and might end up distracting you from the lesson. If this is your first time programming, I recommend option 2a.)
 
 ## Let's get started!
+
 ### What is *Data Visualization*? 
 
-Data visualization is a presentation of data in graphical, pictoral format. It helps you find trends in data, or tell an appealing story from the data you have.
+Data visualization is a presentation of data in graphical, pictoral format. Why is data visualization so important? 
 
-We will work with tabular data - arranged in rows and column, like we did in the [Data Wrangling workshop](https://github.com/davidklaing/data_science_workshops). We are going to learn some fundamental components of `ggplot2` to create a visualization:
+Besides being able to show the data to others in an interactive way, data visualization is an important task in data science because: 
+
+1. It helps you to understand the structure of your data, and the relationship among each variables. 
+* Example 1: Below I used package `vis_dat` to see structure of the dataset we're working on today - `gapminder`. We'll learn more about this dataset later. Here you can see our dataset has variables in factor, integer, and numeric types. There some missing data in `lifeExp` variable, which is shown through the grey color. Rest assured, I just made a toy dataset with some missing values to visualize what `vis_dat` can do for you. We will work with a full dataset (no missing values) later!
+
+```{r, echo=FALSE}
+test <- gapminder
+test$lifeExp[(1000:1250)] <- NA
+vis_dat(test, palette = "cb_safe")
+```
+
+* Example 2: In this example, I want to discover whether there is any trend bewteen GDP per capita and life expectancy. From the visualization, I can tell indeed there is!
+
+```{r, echo=FALSE}
+gapminder %>% 
+  ggplot(aes(gdpPercap, lifeExp)) + 
+  scale_x_log10() +
+  geom_point(alpha = 0.6) + 
+  geom_smooth(method = "lm") + 
+  labs(title = "Does GDP per capita has any relationship with life expectancy?") + 
+  theme_bw()
+```
+
+2. It assists you in forming hypothesis for analysis. 
+
+Initially, I thought Asia and Africa are the 2 continents with lowest average GDP per capita. I was wrong! America's average GDP per cap is slightly lower than Asia's. This is because there are some outliers in Asia. 
+
+```{r, echo = FALSE}
+gapminder %>% 
+  group_by(continent) %>% 
+  summarise(avg_GDPpercap = mean(gdpPercap)) %>% 
+  ggplot() +
+  geom_jitter(data = gapminder, aes(continent, gdpPercap), alpha = 0.4) +
+  geom_col(aes(continent, avg_GDPpercap, fill = "average GDP per cap"), alpha = 0.9, show.legend = TRUE) + 
+  labs(title = "Is GDP per cap generally higher in the western continents?",
+       x = "", y = "GDP per cap") + 
+  scale_fill_manual(name = "", values = c("average GDP per cap" = "tomato")) + 
+  theme_bw()
+```
+
+During my time at UBC Master of Data Science program, data visualization is an extremely important component of any project! One of all purposes of data visualization is for exploratory data analysis to understand the structure of our data, limit the scope of our project, and figure out the strategy to use this data for specific analysis (i.e. Do we need further data wrangling?). Another purpose is to compare different models in machine learning to understand their behavior when we change a hyper-parameter - does accuracy goes up or down? We will talk about this in our upcoming workshops in Supervised and Unsupervised Learning! 
+
+Because of all of these reasons, without data visualization, unless we have super power to understand everything by only looking at the data, we would have great challenge coming up with a good analysis. 
+
+Today, we will work with tabular data - arranged in rows and column, like we did in the [Data Wrangling workshop](https://github.com/davidklaing/data_science_workshops). We are going to learn some fundamental components of `ggplot2` to create a visualization:
 - Set up a plot with `ggplot`
 - Choose which variables to plot using `mapping = aes(x, y)`
 - Group data using color or shape
