@@ -11,30 +11,10 @@ This workshop acquires some materials from the [Data Wrangling workshop](https:/
 
 ## How to get set up for this workshop
 
-### Getting this document on your computer:
-
-1. Go to the GitHub repository here: [https://github.com/hadinh1306/workshop-materials](https://github.com/hadinh1306/workshop-materials)
-2. Click the green button on the right that says "Clone or download".
-3. Click "Download ZIP". (If you're proficient with git, feel free to clone the repository.)
-4. Create a folder on your computer to store your work, and store your ZIP file there.
-5. Double-click your ZIP file to unzip it and get all the code.
-
 ### Getting R and Rstudio
 
 1. Download and install R from here: [http://cran.stat.sfu.ca/](http://cran.stat.sfu.ca/).
 2. Download and install RStudio Desktop (Open Source Edition) from here: [https://www.rstudio.com/products/rstudio/#Desktop](https://www.rstudio.com/products/rstudio/#Desktop).
-
-### Getting ready to play!
-
-1. In RStudio, open `data_viz_workshop.Rmd`, a file in `YOUR_FOLDER/workshop_materials/data_visualization`. (That's this file!)
-2. In the code snippet below, remove the hashtags from both lines, and click the green "play" button on the right to install `dplyr`, `ggplot2`, and `gapminder`, the three packages you'll need for the workshop.
-
-
-```r
-#install.packages("dplyr")
-#install.packages("ggplot2")
-#install.packages("gapminder")
-```
 
 ### Having installation problems?
 
@@ -43,6 +23,22 @@ Option 1: Ask for help! We have volunteers who can help troubleshoot.
 Option 2a: Find a partner and follow along together — most of the exercises can be done collaboratively. Your installation problem is almost certainly solvable — we just might not have time today.
 
 Option 2b: Use [this datacamp light](https://cdn.datacamp.com/dcl/standalone-example.html) page to write and execute code in your browser. (A couple caveats: doesn't come with the gapminder data, and might end up distracting you from the lesson. If this is your first time programming, I recommend option 2a.)
+
+### Getting this document on your computer:
+
+1. Go to the GitHub repository here: [https://github.com/hadinh1306/workshop-materials](https://github.com/hadinh1306/workshop-materials)
+2. Click the green button on the right that says "Clone or download".
+3. Click "Download ZIP". (If you're proficient with git, feel free to clone the repository.)
+4. Create a folder on your computer to store your work, and store your ZIP file there.
+5. Double-click your ZIP file to unzip it and get all the code.
+6, In RStudio, open `data_viz_workshop.Rmd`, a file in `YOUR_FOLDER/workshop_materials/data_visualization`. (That's this file!)
+
+## What will we do today? 
+
+- A quick intro to data visualization (10 mins)
+- Discussion about some bad visualizations and how to improve them (10 mins)
+- Learn how to make data visualizations using `ggplot2` package (1 hour 30 mins)
+- Wrap up and go through bonus if time permits (10 mins)
 
 ## Let's get started!
 
@@ -56,21 +52,46 @@ Besides being able to show the data to others in an engaging way, data visualiza
 
 * Example 1: Below I used package `vis_dat` to see structure of the dataset we're working on today - `gapminder`. We'll learn more about this dataset later. Here you can see our dataset has variables in factor, integer, and numeric types. There is some missing data in `lifeExp` variable, which is shown through the grey-colored block. Rest assured, I just made a toy dataset with some missing values to visualize what `vis_dat` can do for you. We will work with a full dataset (no missing values) later!
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
 
 * Example 2: In this example, I want to discover whether there is any trend between GDP per capita and life expectancy. From the visualization, I can tell indeed there is a positive correlation between the two!
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 2. It assists you in forming hypothesis for analysis. 
 
 Initially, I thought Asia and Africa are the 2 continents with lowest average GDP per capita. I was wrong! America's average GDP per cap is slightly lower than Asia's. This is because there are some outliers in Asia. 
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 During my time at UBC Master of Data Science program, data visualization is an extremely important component of any project! One of all purposes of data visualization is for exploratory data analysis to understand the structure of our data, limit the scope of our project, and figure out the strategy of how to use this data for a specific analysis (i.e. Do we need further data wrangling?). Another purpose is to compare different models in machine learning to understand their behavior when we change a hyper-parameter - does accuracy goes up or down? We will talk about this in our upcoming workshops in Supervised and Unsupervised Learning! 
 
 Because of all of these reasons, unless we have a super power to understand everything by only looking at the dataset, we would face a great challenge coming up with a good analysis without data visualization. 
+
+### An inspiration!
+
+There are good and bad visualizations. Before we see a good visualization for an inspiration, let's discuss about some bad ones and see how we can improve! 
+
+Bad visualizations cannot convey the message effectively. 
+
+![](bad_viz1.png)
+
+Even worse, it can make viewers misunderstand the story!
+
+![](bad_viz2.jpg)
+
+Let's see what actually is a good visualization. Hans Rosling's [They Joyful of Stat](https://youtu.be/jbkSRLYSojo?t=33s) is one of my inspirations for data visualization. He turned boring numbers into an engaging story using data visualization! Today we might not re-create his visualization completely, but you will have a taste of how, using R `ggplot2` package.
+
+### Getting ready to play!
+
+In the code snippet below, remove the hashtags from both lines, and click the green "play" button on the right to install `dplyr`, `ggplot2`, and `gapminder`, the three packages you'll need for the workshop.
+
+
+```r
+#install.packages("dplyr")
+#install.packages("ggplot2")
+#install.packages("gapminder")
+```
 
 Today, we will work with tabular data - arranged in rows and column, like we did in the [Data Wrangling workshop](https://github.com/davidklaing/data_science_workshops). We are going to learn some fundamental components of `ggplot2` to create a visualization:
 - Set up a plot with `ggplot`
@@ -79,7 +100,7 @@ Today, we will work with tabular data - arranged in rows and column, like we did
 - Choose which type of plot using `geom_`
 - Add title and subtitle using `labels`
 
-### Load packages that we will use
+Let's load packages that we will use
 
 
 ```r
@@ -88,7 +109,7 @@ library(ggplot2)
 library(gapminder)
 ```
 
-In this workshop, we will work with `gapminder` dataset, which contains data on life expectancy, GDP per capita, and population by country from 1952 to 2007 in increments of 5 years. 
+We will work with `gapminder` dataset, which contains data on life expectancy, GDP per capita, and population by country from 1952 to 2007 in increments of 5 years. 
 
 
 ```r
@@ -115,20 +136,6 @@ To learn more about the dataset
 # question mark and execute that line.
 ?gapminder
 ```
-
-### An inspiration!
-
-There are good and bad visualizations. Before we see a good visualization for an inspiration, let's discuss about some bad ones and see how we can improve! 
-
-Bad visualizations cannot convey the message effectively. 
-
-![](bad_viz1.png)
-
-Even worse, it can make viewers misunderstand the story!
-
-![](bad_viz2.jpg)
-
-Let's see what actually is a good visualization. Hans Rosling's [They Joyful of Stat](https://youtu.be/jbkSRLYSojo?t=33s) is one of my inspirations for data visualization. He turned boring numbers into an engaging story using data visualization! Today we might not re-create his visualization completely, but you will have a taste of how, using R `ggplot2` package.
 
 ### Some quick tips to get our life easier
 
@@ -470,6 +477,13 @@ df %>%
   scale_function(name = "<text>")
 ```
 
+#### Mini exercise
+
+Add labels for your legend. 
+
+
+
+
 ### [Bonus] Facetting
 
 If the number of discrete groups are not a lot, you can consider spreading data into different windows using `facet_wrap`. Each window contains visualization for each group.
@@ -487,7 +501,7 @@ df %>%
   facet_wrap(~continent)
 ```
 
-![](data-viz_workshop_files/figure-html/unnamed-chunk-28-1.png)<!-- -->
+![](data-viz_workshop_files/figure-html/unnamed-chunk-29-1.png)<!-- -->
 
 ```
 # cheat sheet
@@ -500,4 +514,11 @@ df %>%
   scale_function(name = "<text>") + 
   facet_wrap(~<variable to facet>)
 ```
+
+#### Mini exercise
+
+Use `facet` to have separated visualization for each continent 
+
+
+
 
