@@ -9,6 +9,8 @@ output:
 
 This workshop acquires some materials from the [Data Wrangling workshop](https://github.com/davidklaing/data_science_workshops) led by David Laing. 
 
+Link to our virtual chatroom: [https://todaysmeet.com/dataviz-workshop](https://todaysmeet.com/dataviz-workshop) 
+
 ## How to get set up for this workshop
 
 ### Getting R and Rstudio
