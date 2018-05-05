@@ -85,8 +85,8 @@ gapminder %>%
   group_by(continent) %>% 
   summarise(avg_GDPpercap = mean(gdpPercap)) %>% 
   ggplot() +
-  geom_jitter(data = gapminder, aes(continent, gdpPercap), alpha = 0.4) +
-  geom_col(aes(continent, avg_GDPpercap, fill = "average GDP per cap"), alpha = 0.9, show.legend = TRUE) + 
+  geom_jitter(data = gapminder, aes(continent, gdpPercap), alpha = 0.3) +
+  geom_col(aes(continent, avg_GDPpercap, fill = "average GDP per cap"), color = "red", alpha = 0.4, show.legend = TRUE) + 
   labs(title = "Is GDP per cap generally higher in the western continents?",
        x = "", y = "GDP per cap") + 
   scale_fill_manual(name = "", values = c("average GDP per cap" = "tomato")) + 
@@ -218,7 +218,7 @@ When I first learned `ggplot2` for data visualization, I made a little *cheat sh
 ```
 # cheat sheet
 <data> %>% 
-  ggplot(aes(x = <variable 1>, y = <variable 2>))
+  ggplot(mapping = aes(x = <variable 1>, y = <variable 2>))
 ```
 
 #### Mini exercise
@@ -453,7 +453,7 @@ df %>%
        x = "GDP per capita ($)", y = "Life expectancy (years)") + 
   scale_color_discrete(name = "") +
   scale_size_continuous(name = "GDP per capita") +
-  facet_wrap(~continent)
+  facet_wrap(~continent) #scales = "free")
 ```
 
 ```

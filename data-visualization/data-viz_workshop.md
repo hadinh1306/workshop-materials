@@ -229,7 +229,7 @@ When I first learned `ggplot2` for data visualization, I made a little *cheat sh
 ```
 # cheat sheet
 <data> %>% 
-  ggplot(aes(x = <variable 1>, y = <variable 2>))
+  ggplot(mapping = aes(x = <variable 1>, y = <variable 2>))
 ```
 
 #### Mini exercise
@@ -500,7 +500,7 @@ df %>%
        x = "GDP per capita ($)", y = "Life expectancy (years)") + 
   scale_color_discrete(name = "") +
   scale_size_continuous(name = "GDP per capita") +
-  facet_wrap(~continent)
+  facet_wrap(~continent) #scales = "free")
 ```
 
 ![](data-viz_workshop_files/figure-html/unnamed-chunk-29-1.png)<!-- -->
