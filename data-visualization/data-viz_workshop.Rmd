@@ -37,7 +37,7 @@ Option 2b: Use [this datacamp light](https://cdn.datacamp.com/dcl/standalone-exa
 3. Click "Download ZIP". (If you're proficient with git, feel free to clone the repository.)
 4. Create a folder on your computer to store your work, and store your ZIP file there.
 5. Double-click your ZIP file to unzip it and get all the code.
-6, In RStudio, open `data_viz_workshop.Rmd`, a file in `YOUR_FOLDER/workshop_materials/data_visualization`. (That's this file!)
+6. In RStudio, open `data_viz_workshop.Rmd`, a file in `YOUR_FOLDER/workshop_materials/data_visualization`. (That's this file!)
 
 ## What will we do today? 
 
@@ -109,7 +109,7 @@ Even worse, it can make viewers misunderstand the story!
 
 ![](bad_viz2.jpg)
 
-Let's see what actually is a good visualization. Hans Rosling's [They Joyful of Stat](https://youtu.be/jbkSRLYSojo?t=33s) is one of my inspirations for data visualization. He turned boring numbers into an engaging story using data visualization! Today we might not re-create his visualization completely, but you will have a taste of how, using R `ggplot2` package.
+Let's see what actually is a good visualization. Hans Rosling's [The Joyful of Stat](https://youtu.be/jbkSRLYSojo?t=33s) is one of my inspirations for data visualization. He turned boring numbers into an engaging story using data visualization! Today we might not re-create his visualization completely, but you will have a taste of how, using R `ggplot2` package.
 
 ### Getting ready to play!
 
