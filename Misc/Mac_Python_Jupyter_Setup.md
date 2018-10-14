@@ -1,3 +1,5 @@
+This document instructs you how to install Python and Jupyter on macOS. 
+
 # Python
 
 **Step 1:** By default, Python 2 is installed on Apple computers. Confirm your Python version using Terminal using:
